@@ -1,5 +1,6 @@
 import requests
 from prompt_toolkit import prompt, PromptSession
+from prompt_toolkit.formatted_text import HTML
 from auth import SECRET_ID, SECRET_KEY
 import commands
 
@@ -18,18 +19,29 @@ token = 'bearer ' + d['access_token']
 API_URL = 'https://oauth.reddit.com'
 HEADER = {'Authorization': token, 'User-agent': 'your bot 0.1'}
 
+def search_toolbar():
+    return HTML('Subreddit <b><style bg="ansired">Search</style></b>')
+
+def main_toolbar():
+    return HTML('CLI for <b><style bg="ansired">Reddit</style></b>')
 
 if __name__ == "__main__":
 	session = PromptSession()
 	while True:
-		command = session.prompt(">")
+		command = session.prompt("> ", bottom_toolbar=main_toolbar)
 		# print("command entered:", command)
-		if command == 's':
-			text = session.prompt("Subreddit search: ")
+		if command == 's' or command == 'search':
+			text = session.prompt("Subreddit search: ", bottom_toolbar=search_toolbar)
 			param = {'q': text, 'limit': 5, 'sort': 'relevance'}
 			# print(param)
 			commands.search(param)
-		elif command == 'q':
+		elif command == 'h' or command == 'help':
+			print('Type \'search\' or \'s\' to search for a subreddit.')
+			print('Type \'quit\' or \'q\' to quit the CLI.')
+		elif command == 'q' or command == 'quit':
 			break
+		else:
+			print("Invalid command.")
+
 
 
