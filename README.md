@@ -10,6 +10,8 @@ create a reddit api `SECRET_ID` and `SECRET_KEY`
 
 navigate to repository and do `touch auth.py`
 
+
+In `auth.py`, add these lines:
 ```
 SECRET_ID = "YOUR SECRET_ID HERE"
 SECRET_KEY = "YOUR SECRET_KEY HERE"
