@@ -17,4 +17,6 @@ SECRET_ID = "YOUR SECRET_ID HERE"
 SECRET_KEY = "YOUR SECRET_KEY HERE"
 ```
 
+Run `python3 app.py` to start the application
+
 
